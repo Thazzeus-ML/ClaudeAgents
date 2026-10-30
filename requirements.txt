@@ -1,0 +1,6 @@
+anthropic>=1.1.0
+pandas
+matplotlib
+pydantic
+nest_asyncio
+nbformat
