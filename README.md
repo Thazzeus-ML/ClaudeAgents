@@ -11,6 +11,7 @@ with an orchestrator, measured across every Claude Gen 5 model and effort level.
 |---|---|
 | `notebooks/gen5_subagent_benchmark.ipynb` | The lab notebook: setup, model × effort sweep, async sub-agent orchestrator, findings |
 | `results/<run_id>/` | Per-run outputs (`sweep.jsonl`, `orchestrator.jsonl`, CSV summaries). Commit the runs you want to keep |
+| `policies/routing_policy.json` | The measured routing policy (`category → model, effort` with evidence). Commit it after a full sweep; the notebook loads it on start |
 
 ## Running it
 
@@ -20,6 +21,17 @@ with an orchestrator, measured across every Claude Gen 5 model and effort level.
 4. In Part 2 keep `QUICK = True` for the first pass, read the cost estimate, then set `GO = True`.
 5. In Part 3 set `GO_ORCH = True` to compare **solo**, **blocking**, and **async** delegation on the fan-out task.
 6. Part 4 produces the per-category recommendation table and effort curves. Record conclusions in the findings log with the run id.
+7. Part 5 merges the recommendations into `routing_policy.json`, routes new tasks through it with escalation on failure, and runs the orchestrator with policy routing. Download the file and commit it under `policies/`.
+
+## Routing policy
+
+Findings only matter if future work uses them. `routing_policy.json` maps each task category to the cheapest
+model and effort that matched the best score within tolerance, with the evidence attached (run id, task count,
+trials, models and efforts compared). A new run replaces an entry only when its evidence is at least as strong,
+and entries from a partial sweep are tagged `thin`. Three things resolve through it: `route(category)` for direct
+calls, `run_routed(prompt)` which labels an unknown task with a Haiku call and escalates one rung when a checker
+fails, and the orchestrator with `routing=True`, where the lead names a category per sub-agent and the harness
+picks the model and effort.
 
 ## Models covered
 
