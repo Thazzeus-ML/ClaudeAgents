@@ -3,7 +3,7 @@
 Claude sub-agent benchmarks: optimizing sub-agent utilization and running sub-agents **asynchronously**
 with an orchestrator, measured across every Claude Gen 5 model and effort level.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Thazzeus-ML/ClaudeAgents/blob/claude/dazzling-mayer-5r8o68/notebooks/gen5_subagent_benchmark.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Thazzeus-ML/ClaudeAgents/blob/main/notebooks/gen5_subagent_benchmark.ipynb)
 
 ## What is in here
 
