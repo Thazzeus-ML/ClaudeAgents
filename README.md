@@ -33,6 +33,13 @@ calls, `run_routed(prompt)` which labels an unknown task with a Haiku call and e
 fails, and the orchestrator with `routing=True`, where the lead names a category per sub-agent and the harness
 picks the model and effort.
 
+## Task tiers
+
+The suite has an `easy` tier (15 tasks, saturated by Haiku 5.5 at `low`) and a `hard` tier (16 tasks built to fail
+there: sarcasm and mixed sentiment, superseded figures in extraction, number-theory reasoning, edge-case code such as an
+expression evaluator, and tool selection with distractor tools). `TIERS` in cell 2.2 selects `easy`, `hard` or `all`.
+Every enabled model runs at every effort level in both tiers.
+
 ## Models covered
 
 Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5 are enabled by default. Fable 5, Opus 5 and Sonnet 5 are in the
